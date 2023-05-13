@@ -1,18 +1,17 @@
 #ifndef LISTS_H
 #define LISTS_H
-
 /**
- * struct listint_t - single linked list struct
- * @n: an integer of member
- * @next: address that points to next
- * Description: single linked list that have node structure
+ * struct listint_s - singly linked list
+ * @n: integer
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
  */
-
-typedef struct listint_t
+typedef struct listint_s
 {
 	int n;
-	struct listint_t *next;
-} listint_s;
+	struct listint_s *next;
+} listint_t;
 
 size_t print_listint(const listint_t *h);
 listint_t *add_nodeint_end(listint_t **head, const int n);
