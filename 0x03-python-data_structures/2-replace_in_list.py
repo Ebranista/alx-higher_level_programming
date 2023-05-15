@@ -1,4 +1,4 @@
-#!/usr/bin/pyton3
+#!/usr/bin/python3
 def replace_in_list(my_list, idx, element):
     for x in my_list:
         if idx == my_list.index(x):
