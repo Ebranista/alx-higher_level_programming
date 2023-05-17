@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-def delete_complex(a_dictionary, value):
+def complex_delete(a_dictionary, value):
     Newdict = a_dictionary.copy()
     try:
         for key in Newdict:
