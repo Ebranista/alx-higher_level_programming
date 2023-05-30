@@ -25,7 +25,7 @@ class Sqaure:
         return (self.__size * self.__size)
 
     @property
-    def seze(self):
+    def size(self):
         """
         size getter. Handle size errors
         """
