@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 class Node:
     def __init__(self, data, next_node=None):
         self.data = data
@@ -6,52 +5,48 @@ class Node:
 
     @property
     def data(self):
-        return self.__data
+        return self._data
 
     @data.setter
     def data(self, value):
         if not isinstance(value, int):
             raise TypeError("data must be an integer")
-        self.__data = value
+        self._data = value
 
     @property
     def next_node(self):
-        return self.__next_node
+        return self._next_node
 
     @next_node.setter
     def next_node(self, value):
-        if not isinstance(value, Node) and value is not None:
+        if value is not None and not isinstance(value, Node):
             raise TypeError("next_node must be a Node object")
-        self.__next_node = value
+        self._next_node = value
 
 
 class SinglyLinkedList:
-    def __str__(self):
-        rtn = ""
-        ptr = self.__head
-
-        while ptr is not None:
-            rtn += str(ptr.data)
-            if ptr.next_node is not None:
-                rtn += "\n"
-            ptr = ptr.next_node
-
-        return rtn
-
     def __init__(self):
-        self.__head = None
+        self.head = None
 
     def sorted_insert(self, value):
-        ptr = self.__head
-
-        while ptr is not None:
-            if ptr.data > value:
-                break
-            ptr_prev = ptr
-            ptr = ptr.next_node
-
-        newNode = Node(value, ptr)
-        if ptr == self.__head:
-            self.__head = newNode
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+        elif value < self.head.data:
+            new_node.next_node = self.head
+            self.head = new_node
         else:
-            ptr_prev.next_node = newNode
+            current = self.head
+            while current.next_node is not None and current.next_node.data < value:
+                current = current.next_node
+            new_node.next_node = current.next_node
+            current.next_node = new_node
+
+    def __str__(self):
+        result = ""
+        current = self.head
+        while current is not None:
+            result += str(current.data) + "\n"
+            current = current.next_node
+        return result
+
